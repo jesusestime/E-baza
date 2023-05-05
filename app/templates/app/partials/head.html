@@ -1,0 +1,62 @@
+<head onload="startTime()">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="E_baza Database">
+    {% load static %}
+
+    
+    <!-- Select 2 import-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" defer></script>
+    <script>
+         $(document).ready(function() {
+                $('#id_recipients').select2();
+
+                var upload=document.getElementById('id_files')
+                upload.onchange=function(){
+                    if(this.files[0].size > 5 * 1048579){
+                        alert("⚠️ Attention! la taille maximale du fichier dépasse 5MB")
+                        this.value="";}
+                };
+
+
+            });
+
+    </script>
+
+    
+
+
+<script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+  
+    <link href="{% static 'assets/libs/dropzone/dist/dropzone.css' %}" rel="stylesheet">
+    <!-- Favicon icon-->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/images/brand/logo/souris.jpg'%}">
+
+
+    <!-- Libs CSS -->
+    <link href="{% static 'assets/libs/bootstrap-icons/font/bootstrap-icons.css' %}" rel="stylesheet">
+
+    <link href="{% static 'assets/libs/%40mdi/font/css/materialdesignicons.min.css' %}" rel="stylesheet">
+
+    <link href="{% static 'assets/libs/simplebar/dist/simplebar.min.css' %}" rel="stylesheet">
+
+
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/theme.min.css' %}">
+    <link href="{% static 'assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css' %}" rel="stylesheet">
+    <title>E_baza Database </title>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+   
+    <!-- JavaScript -->
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+
+
+
+      
+</head>

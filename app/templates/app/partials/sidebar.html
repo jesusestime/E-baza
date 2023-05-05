@@ -1,0 +1,71 @@
+<!-- navbar vertical -->
+<!-- Sidebar -->
+{% load static %}
+{% with request.resolver_match.url_name as url_name %}
+ <div class="navbar-vertical navbar nav-dashboard">
+     <div class="h-100" data-simplebar>
+         <!-- Brand logo -->
+         {% if request.user.is_authenticated and request.user.is_staff or request.user.is_superuser %}
+         <span>
+          <a class="navbar-brand" href="{% url 'index' %}">
+             <img src="{% static 'assets/images/brand/logo/souris.jpg' %} " alt="dash ui - bootstrap 5 admin dashboard template"><span class="text-dark mx-2">E_baza</span>
+         </a>
+        
+         </span>
+        
+         <!-- Navbar nav -->
+         <ul class="navbar-nav flex-column" id="sideNavbar">
+
+             <!-- Nav item -->
+             <li class="nav-item">
+                 <div class="navbar-heading">Menu</div>
+             </li>
+             <!-- Nav item -->
+             <li class="nav-item">
+                 <a class="nav-link has-arrow {% if url_name == 'index' %} active {% endif %} "
+                     href="{% url 'index' %}">
+                     <i data-feather="home" class="nav-icon me-2 icon-xxs" >
+                     </i> Accueil
+                 </a>
+             </li>
+
+             
+             <!-- Nav item -->
+              <li class="nav-item">
+                 <a class="nav-link has-arrow  "
+                     href="https://e-baza.bi/">
+                     <i data-feather="rss" class="nav-icon me-2 icon-xxs" >
+                     </i> Aller sur E_baza
+                 </a>
+             </li>
+            
+            {% endif %}
+            {% if request.user.is_authenticated and request.user.is_superuser %}
+             <!-- Nav item -->
+             <li class="nav-item">
+                 <a class="nav-link has-arrow {% if url_name == 'employee_index' %} active {% endif %} "
+                     href="{% url 'employee_index' %}">
+                     <i data-feather="users" class="nav-icon me-2 icon-xxs" >
+                     </i> Utilisateurs
+                 </a>
+             </li>
+
+             <!-- Nav item -->
+             <li class="nav-item">
+                 <a class="nav-link has-arrow {% if url_name == 'employee_service_index' %} active {% endif %}"
+                     href="{% url 'employee_service_index' %}">
+                     <i data-feather="home" class="nav-icon me-2 icon-xxs" >
+                     </i> Services des utilisateurs
+                 </a>
+             </li>
+
+            
+
+
+
+        <!-- Nav item -->
+        </ul>
+        {% endif %}
+    </div>
+</div>
+{% endwith %}

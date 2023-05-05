@@ -1,0 +1,28 @@
+{% extends 'app/layouts/sign.html' %} {% block content %}
+<!-- Page Content -->
+{% load static %}
+
+<!-- Error page -->
+    <main class="container min-vh-100 d-flex justify-content-center
+      align-items-center">
+      <!-- row -->
+      <div class="row">
+        <!-- col -->
+        <div class="col-12">
+          <!-- content -->
+          <div class="text-center">
+            <!-- text -->
+            <img class="w-40 h-40" src="{% static 'assets/images/error/web-security.svg' %}" alt="Image" class="img-fluid">
+            <h1 class=" display-4 ">
+               Information de sécurité
+            </h1>
+            <p class="my-8">Désolé cher utilisateur {{ request.user }} ! Veuillez contacter l'administrateur (même si vous n'y travaillez plus) pour vous permettre l'accès.
+            <br> ⚠️Vous devez avoir des privilèges de superutilisateur pour y accéder.</p>
+            <!-- button -->
+            <a href="{% url "index" %}" class="btn btn-primary">Retour sur la page d'accueil</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+{% endblock %}

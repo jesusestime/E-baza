@@ -1,0 +1,65 @@
+{% extends 'app/layouts/default.html' %} {% block content %}
+{% load static %}
+
+
+<!-- page content -->
+    <div id="app-content">
+
+      <div class="app-content-area box">
+
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-12 ">
+              <!-- Page header -->
+              <div class="d-flex justify-content-between align-items-center mb-5">
+                <h3 class="mb-0">{{ commune.name }} > {{ theme.name }}</h3>
+
+              </div>
+            </div>
+          </div>
+
+        
+
+<h1 class="text-gray">Trimestres</h1>
+          <div class="row">
+            <div class="col-xl-12 col-md-12 col-12 mb-5">
+              <div class="row row-cols-lg-2 row-cols-1 g-5  ">
+              {% if trimestres %}
+{% for trimestre in trimestres %}
+                            
+                                <div class="col">
+                                <div class="card h-100 card-lift">
+                                    <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="fw-semi-bold "> 
+                    <a href="{% url 'centres'  commune.id theme.id trimestre.id %}">{{ trimestre.name }}</a></span>
+                                    
+                                    </div>
+               
+                      
+                    </div>
+                  </div>
+                </div>
+            
+{% endfor %}
+
+{% else %}
+    <p>Aucune donnée disponible pour les trimestres.</p>
+{% endif %}
+                
+
+              </div>
+            </div>
+          </div>
+<div class="block">
+
+                                            <a class=" btn btn-primary" href="{% url 'themes'  commune.id %}">Retour</a>
+                             </div>
+      </div>
+      
+    </div>
+    
+{% endblock %}
+
+
+

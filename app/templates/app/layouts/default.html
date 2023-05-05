@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+{% load static %}
+<!-- Head -->
+{% include 'app/partials/head.html' %}
+
+<!-- End of Head -->
+
+<!-- Body -->
+  <body>
+        <main id="main-wrapper" class="main-wrapper">
+        <div class="header">
+                <!-- Navbar -->
+                {% include 'app/partials/navbar.html' %}
+                <!-- End of Navbar -->
+                <!-- Sidebar -->
+                {% include 'app/partials/sidebar.html' %}
+                <!-- End of Sidebar -->
+                
+
+                <!-- page content -->
+                {% block content %}
+                {%endblock %}
+                <!--  End page content -->
+            </div>
+        </main>
+        
+        <!-- Scripts -->
+        <script src="{% static 'assets/libs/dropzone/dist/min/dropzone.min.js' %}"></script>
+        <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+        <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+        <!-- Libs JS -->
+        <script src="{% static 'assets/libs/jquery/dist/jquery.min.js'%}"></script>
+        <script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js'%}"></script>
+        <script src="{% static 'assets/libs/feather-icons/dist/feather.min.js'%}"></script>
+        <script src="{% static 'assets/libs/simplebar/dist/simplebar.min.js'%}"></script>
+
+
+
+
+
+        <!-- quill js -->
+        <script src="{% static 'assets/libs/quill/dist/quill.min.js'%}"></script>
+        
+        <!-- Theme JS -->
+        <script src="{% static 'assets/js/theme.min.js'%}"></script>
+        
+        <!-- popper js -->
+        <script src="{% static 'assets/libs/%40popperjs/core/dist/umd/popper.min.js'%}"></script>
+        <!-- tippy js -->
+        <script src="{% static 'assets/libs/tippy.js/dist/tippy-bundle.umd.min.js'%}"></script>
+        <script src="{% static 'assets/js/vendors/tooltip.js'%}"></script>
+        <script src="{% static 'assets/libs/datatables/media/js/jquery.dataTables.min.js'%}"></script>
+        <script src="{% static 'assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js'%}"></script>
+        <script src="{% static 'assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js'%}"></script>
+        <script src="{% static 'assets/js/vendors/datatable.js'%}"></script>
+
+ 
+       
+
+    </body>
+
+    <!-- End of body -->
+</html>
