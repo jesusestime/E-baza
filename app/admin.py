@@ -3,7 +3,7 @@ from django_admin_search.admin import AdvancedSearchAdmin
 from .forms import ModelSearchForm
 
 # Register your models here.
-from app.models import Centre,Commune,Employee_Service,Employee,Fiche,Theme,Trimestre
+from app.models import Province,Centre,Commune,Employee_Service,Employee,Fiche,Theme,Trimestre
 
 class MonModeleAdmin(admin.ModelAdmin):
     search_fields = ['name']
@@ -24,3 +24,4 @@ admin.site.register(Employee_Service,MonModeleAdmin)
 admin.site.register(Fiche, ModelAdmin)
 admin.site.register(Theme,MonModeleAdmin)
 admin.site.register(Trimestre,MonModeleAdmin)
+admin.site.register(Province,MonModeleAdmin)

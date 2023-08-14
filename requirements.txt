@@ -1,0 +1,10 @@
+asgiref
+crispy-bootstrap5
+Django
+django-cleanup
+django-crispy-forms
+mysqlclient
+Pillow
+sqlparse
+tzdata
+django-admin-search

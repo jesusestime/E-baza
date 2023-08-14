@@ -29,11 +29,16 @@ urlpatterns = [
    path('perm/employee/', home.perm_is_employee, name='perm_is_employee'),
    path('perm/admin/', home.perm_is_admin, name='perm_is_admin'),
 
-    path('', home.index, name='index'),
+    
+    path('communes/<int:province_id>/', home.communes, name='communes'),
     path('themes/<int:commune_id>/', home.themes, name='themes'),
     path('trimestres/<int:commune_id>/<int:theme_id>/', home.trimestres, name='trimestres'),
     path('centres/<int:commune_id>/<int:theme_id>/<int:trimestre_id>/', home.centres, name='centres'),
     path('fiche/<int:commune_id>/<int:theme_id>/<int:trimestre_id>/<int:centre_id>/', home.fiche, name='fiche'),
  
+    path('provinces', home.provinces, name='provinces'),
+    path('themes', home.all_themes, name='themes'),
+    path('', home.index, name='index'),
+
 ]
 

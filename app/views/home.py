@@ -1,14 +1,15 @@
 from django.db.models import Sum
 from django.http import HttpRequest
 from django.shortcuts import render, get_object_or_404
-from app.models import  Commune, Theme, Trimestre, Centre, Fiche
+from app.models import  Province,Commune, Theme, Trimestre, Centre, Fiche
 from django.contrib.auth.decorators import login_required,user_passes_test
 
 @login_required
 @user_passes_test(lambda u: u.is_staff or u.is_superuser ,login_url="perm_is_employee")
-def index(request):
+def communes(request):
     communes = Commune.objects.all()
-    return render(request, 'app/home/index.html', {'communes': communes})
+    return render(request, 'app/home/communes.html', {'communes': communes})
+
 
 @login_required
 @user_passes_test(lambda u: u.is_staff or u.is_superuser ,login_url="perm_is_employee")
@@ -61,3 +62,40 @@ def perm_is_admin(request):
         request,
         'app/perm/admin.html'
     )
+
+
+@login_required
+@user_passes_test(lambda u: u.is_staff or u.is_superuser ,login_url="perm_is_employee")
+def index(request):
+    return render(request, 'app/home/index.html')
+
+
+@login_required
+@user_passes_test(lambda u: u.is_staff or u.is_superuser ,login_url="perm_is_employee")
+def provinces(request):
+    provinces = Province.objects.all()
+    return render(request, 'app/home/provinces.html', {'provinces': provinces})
+
+
+@login_required
+@user_passes_test(lambda u: u.is_staff or u.is_superuser ,login_url="perm_is_employee")
+def all_themes(request):
+    themes = Theme.objects.all()
+    return render(request, 'app/home/all_themes.html', {'themes': themes})
+
+
+@login_required
+@user_passes_test(lambda u: u.is_staff or u.is_superuser ,login_url="perm_is_employee")
+def communes(request, province_id):
+    province = get_object_or_404(Province, pk=province_id)
+    communes = province.commune_set.all()
+    return render(request, 'app/home/communes.html', {'province': province, 'communes': communes})
+
+
+
+
+def navbar(request):
+    provinces = Province.objects.all()
+    themes = Theme.objects.all()
+    return {'provinces': provinces,
+    'themes': themes}

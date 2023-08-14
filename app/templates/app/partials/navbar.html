@@ -1,82 +1,120 @@
 <!-- navbar -->
-    {% load static %}
-  <div class="navbar-custom navbar navbar-expand-lg">
-    <div class="container-fluid px-0">
-    <a class="navbar-brand d-block d-md-none" href="../index.html">
-      <img src="{% static 'assets/images/brand/logo/souris.jpg' %}" alt="Image">
-  </a>
+{% load static %}
+<div class="navbar-custom navbar navbar-expand-lg me-lg-3">
+  <div class="container-fluid">
+  <a class="navbar-brand" href="{% url 'index' %}">
+    <img src="{% static 'assets/images/brand/logo/souris_1.png' %}" class="img-fluid h-30 w-30" alt="Image">
+</a>
 
 
 
-    <a id="nav-toggle" href="#!" class="ms-auto ms-md-0 me-0 me-lg-3 ">
-      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-text-indent-left text-muted" viewBox="0 0 16 16">
-        <path d="M2 3.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm.646 2.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L4.293 8 2.646 6.354a.5.5 0 0 1 0-.708zM7 6.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm-5 3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
-      </svg></a>
+  <!--Navbar nav -->
+  <ul class="navbar-nav navbar-right-wrap ms-lg-auto d-flex nav-top-wrap align-items-center ms-4 ms-lg-0">
+    
+    <!-- Nav item -->
+    <li class="nav-item">
+      <a class="nav-link has-arrow  "
+          href="https://e-baza.bi/">
+          <i data-feather="rss" class="nav-icon me-2 icon-xxs" >
+          </i> Aller sur E-baza
+      </a>
+  </li>
 
-    <div class="d-none d-md-none d-lg-block">
-    </div>
-    <!--Navbar nav -->
-    <ul class="navbar-nav navbar-right-wrap ms-lg-auto d-flex nav-top-wrap align-items-center ms-4 ms-lg-0">
-      <li><div class="ms-2 mx-8" >
-       <span class="fs-6" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock  text-muted icon-xxs me-1 align-text-bottom"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></span>
-          Le {% now " l (d/m/Y)"%}&nbsp;
-         
-        </div></li>
-      <a href="" class="form-check form-switch theme-switch btn btn-ghost btn-icon rounded-circle mb-0 ">
-        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" value="help">
-        <label class="form-check-label" for="flexSwitchCheckDefault"></label>
-			   </a>
-        </li>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Provinces
+    </a>
+    <ul class="dropdown-menu">
+      {% for p in provinces %}
+      <li><a class="dropdown-item" href="{% url 'communes' province_id=p.id %}">{{p}}</a></li>
+      {% endfor %}
+      
+    </ul>
+  </li>
+
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Thèmes
+    </a>
+    <ul class="dropdown-menu">
+      {% for t in themes %}
+      <li><a class="dropdown-item" href="#">{{t}}</a></li>
+      {% endfor %}
+    </ul>
+  </li>
+  {% if request.user.is_authenticated and request.user.is_superuser %}
+   <!-- Nav item -->
+   <li class="nav-item">
+    <a class="nav-link has-arrow {% if url_name == 'employee_index' %} active {% endif %} "
+        href="{% url 'employee_index' %}">
+        <i data-feather="users" class="nav-icon me-2 icon-xxs" >
+        </i> Utilisateurs
+    </a>
+</li>
+{% endif %}
+
+    <li><div class="ms-2 mx-8" >
+     <span class="fs-6" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock  text-muted icon-xxs me-1 align-text-bottom"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></span>
+        Le {% now " l (d/m/Y)"%}&nbsp;
+       
+      </div></li>
+    <a href="" class="form-check form-switch theme-switch btn btn-ghost btn-icon rounded-circle mb-0 ">
+      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" value="help">
+      <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+       </a>
+      </li>
+
 
       
-      <!-- List -->
-      <li class="dropdown ms-2">
-        <a class="rounded-circle" href="" role="button" id="dropdownUser"
-          data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <div class="avatar avatar-md avatar-indicators avatar-online">
-            <img alt="avatar" src="{{request.user.avatar.url}}" class="rounded-circle">
-          </div>
-        </a>
-        <div class="dropdown-menu dropdown-menu-end"
-          aria-labelledby="dropdownUser">
-          <div class="px-4 pb-0 pt-2">
-
-
-            <div class="lh-1 ">
-              <h5 class="mb-1">{{request.user.username}} </h5>
-              <a href="{% url 'employee_view' request.user.id %}" class="text-inherit fs-6">Voir le profil</a>
-            </div>
-            <div class=" dropdown-divider mt-3 mb-2"></div>
-          </div>
-
-          <ul class="list-unstyled">
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="{% url 'employee_edit' request.user.id %}">
-                <i class="me-2 icon-xxs dropdown-item-icon" data-feather="user"></i>Editer le 
-                profil
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item"
-                href="{% url 'employee_password' request.user.id %}">
-                <i class="me-2 icon-xxs dropdown-item-icon"
-                  data-feather="lock"></i>Change le mot de passe
-              </a>
-
-
-            </li>
-            <li>
-              <a class="dropdown-item" href="{% url 'employee_logout' %}">
-                <i class="me-2 icon-xxs dropdown-item-icon"
-                  data-feather="power"></i>Se déconnecter
-              </a>
-            </li>
-          </ul>
-
+    
+    <!-- List -->
+    <li class="dropdown ms-2">
+      <a class="rounded-circle" href="" role="button" id="dropdownUser"
+        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div class="avatar avatar-md avatar-indicators avatar-online">
+          <img alt="avatar" src="{{request.user.avatar.url}}" class="rounded-circle">
         </div>
-      </li>
-    </ul>
-    </div>
+      </a>
+      <div class="dropdown-menu dropdown-menu-end"
+        aria-labelledby="dropdownUser">
+        <div class="px-4 pb-0 pt-2">
+
+
+          <div class="lh-1 ">
+            <h5 class="mb-1">{{request.user.username}} </h5>
+            <a href="{% url 'employee_view' request.user.id %}" class="text-inherit fs-6">Voir le profil</a>
+          </div>
+          <div class=" dropdown-divider mt-3 mb-2"></div>
+        </div>
+
+        <ul class="list-unstyled">
+
+          <li>
+            <a class="dropdown-item d-flex align-items-center" href="{% url 'employee_edit' request.user.id %}">
+              <i class="me-2 icon-xxs dropdown-item-icon" data-feather="user"></i>Editer le 
+              profil
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item"
+              href="{% url 'employee_password' request.user.id %}">
+              <i class="me-2 icon-xxs dropdown-item-icon"
+                data-feather="lock"></i>Change le mot de passe
+            </a>
+
+
+          </li>
+          <li>
+            <a class="dropdown-item" href="{% url 'employee_logout' %}">
+              <i class="me-2 icon-xxs dropdown-item-icon"
+                data-feather="power"></i>Se déconnecter
+            </a>
+          </li>
+        </ul>
+
+      </div>
+    </li>
+  </ul>
   </div>
+</div>
 </div>
