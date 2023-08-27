@@ -1,0 +1,174 @@
+{% extends 'app/layouts/default.html' %}
+{% block content %}
+  {% load static %}
+
+  <!-- page content -->
+  <div id="capp-content">
+    <div class="app-content-area box container">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-12 ">
+            <!-- Page header -->
+            <div class="d-flex justify-content-between align-items-center mb-5">
+              <h3 class="mb-0">{{ theme.name }} > {{ indicateur.name }} > {{ region.name }} > {{ periode.year }}</h3>
+            </div>
+          </div>
+        </div>
+
+        {% if fiches %}
+          <h1 class="text-gray">Résumé</h1>
+          <div class="card h-100 card-lift">
+            <div class="card-body">
+              <h4 class="fw-semi-bold text-gray">Total : {{ total.nombre__sum }}</h4>
+            </div>
+          </div>
+          <h2 class="my-5">Graphiques</h2>
+
+
+          <!-- Graphiques Chart.js -->
+          <div class="row">
+            <div class="col-md-6">
+              <canvas id="graphique-sexe-nombre" width="400" height="400"></canvas>
+            </div>
+            <div class="col-md-6">
+              <canvas id="graphique-age-sexe" width="400" height="400"></canvas>
+            </div>
+          </div>
+          <h2 class="my-5">Tableau recapitulatif</h2>
+                    <!-- row -->
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="card">
+                          <div class="card-body">
+                            <div class="table-responsive table-card">
+                              <table id="example" class="table text-nowrap table-centered mt-0" style="width: 100%">
+                                <thead class="table-light">
+                                  <tr>
+                                    <th>Tranche d'âge</th>
+                                    <th>Sexe</th>
+                                    <th>Nombre</th>
+                                    <th>Source</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {% for fiche in fiches %}
+                                    <tr>
+                                      <td>{{ fiche.age }}</td>
+                                      <td>{{ fiche.sexe }}</td>
+                                      <td>{{ fiche.nombre }}</td>
+                                      <td>{{ fiche.source }}</td>
+                                    </tr>
+                                  {% endfor %}
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+        {% else %}
+          <p>Aucune donnée disponible pour cette fiche.</p>
+        {% endif %}
+
+        <div class="mt-3">
+          <a class="mt-5 btn btn-primary" href="{% url 'periode' periode.region.indicateur.theme.id periode.region.indicateur.id periode.region.id %}">Retour</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{% static 'js/chart.min.js' %}"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Données pour le graphique sexe par nombre d'individus
+      const sexeNombreData = {
+        labels: [{% for fiche in fiches %}"{{ fiche.sexe }}",{% endfor %}],
+        datasets: [{
+          label: 'Nombre d\'individus',
+          data: [{% for fiche in fiches %}{{ fiche.nombre }},{% endfor %}],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.5)',
+            'rgba(54, 162, 235, 0.5)',
+            'rgba(255, 206, 86, 0.5)',
+            'rgba(75, 192, 192, 0.5)',
+            'rgba(153, 102, 255, 0.5)',
+            'rgba(255, 159, 64, 0.5)'
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+pointRadius: 0,
+          borderWidth: 1
+        }]
+      };
+
+      // Options pour le graphique sexe par nombre d'individus
+      const sexeNombreOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      };
+
+      // Création du graphique sexe par nombre d'individus
+      var sexeNombreChart = new Chart(document.getElementById('graphique-sexe-nombre'), {
+        type: 'bar',
+        data: sexeNombreData,
+        options: sexeNombreOptions
+      });
+
+      // Données pour le graphique âge par sexe d'individus
+      const ageSexeData = {
+        labels: [{% for fiche in fiches %}"{{ fiche.age }}",{% endfor %}],
+        datasets: [{
+          label: 'Homme',
+          data: [{% for fiche in fiches %}{% if fiche.sexe == 'Homme' %}{{ fiche.nombre }},{% else %}0,{% endif %}{% endfor %}],
+          backgroundColor: 'rgba(255, 99, 132, 0.5)',
+          borderColor: 'rgba(255, 99, 132, 1)',
+          pointRadius: 0,
+          borderWidth: 1
+        }, {
+          label: 'Femme',
+          data: [{% for fiche in fiches %}{% if fiche.sexe == 'Femme' %}{{ fiche.nombre }},{% else %}0,{% endif %}{% endfor %}],
+          backgroundColor: 'rgba(54, 162, 235, 0.5)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          pointRadius: 0,
+          borderWidth: 1
+        }, {
+          label: 'Non défini',
+          data: [{% for fiche in fiches %}{% if fiche.sexe == 'Non défini' %}{{ fiche.nombre }},{% else %}0,{% endif %}{% endfor %}],
+          backgroundColor: 'rgba(255, 206, 86, 0.5)',
+          borderColor: 'rgba(255, 206, 86, 1)',
+          pointRadius: 0,
+          borderWidth: 1
+        }]
+      };
+
+      // Options pour le graphique âge par sexe d'individus
+      const ageSexeOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      };
+
+      // Création du graphique âge par sexe d'individus
+      var ageSexeChart = new Chart(document.getElementById('graphique-age-sexe'), {
+        type: 'bar',
+        data: ageSexeData,
+        options: ageSexeOptions
+      });
+    });
+  </script>
+{% endblock %}

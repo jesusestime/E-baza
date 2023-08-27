@@ -17,8 +17,8 @@ class EmployeeUpdateForm(UserChangeForm):
             'birthday',
             'sex',
             'tel',
-            'address',
-            'service'
+            'service',
+            'province'
         ]
 
         widgets = {

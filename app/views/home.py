@@ -1,50 +1,57 @@
 from django.db.models import Sum
 from django.http import HttpRequest
 from django.shortcuts import render, get_object_or_404
-from app.models import  Province,Commune, Theme, Trimestre, Centre, Fiche
+from app.models import  Theme,Indicateur,Region,Periode,Fiche
 from django.contrib.auth.decorators import login_required,user_passes_test
 
 @login_required
 @user_passes_test(lambda u: u.is_staff or u.is_superuser ,login_url="perm_is_employee")
-def communes(request):
-    communes = Commune.objects.all()
-    return render(request, 'app/home/communes.html', {'communes': communes})
+def theme(request):
+    themes = Theme.objects.all()
+    return render(request, 'app/home/themes.html', {'themes':themes})
+
+
+def navbar(request):
+    themes = Theme.objects.all()
+    indicateurs = Indicateur.objects.all()
+    return {'themes': themes, 'indicateurs': indicateurs}
 
 
 @login_required
 @user_passes_test(lambda u: u.is_staff or u.is_superuser ,login_url="perm_is_employee")
-def themes(request, commune_id):
-    commune = get_object_or_404(Commune, pk=commune_id)
-    themes = commune.theme_set.all()
-    return render(request, 'app/home/themes.html', {'commune': commune, 'themes': themes})
-
-@login_required
-@user_passes_test(lambda u: u.is_staff or u.is_superuser ,login_url="perm_is_employee")
-def trimestres(request,commune_id, theme_id):
-    commune = get_object_or_404(Commune, pk=commune_id)
+def indicateur(request, theme_id):
     theme = get_object_or_404(Theme, pk=theme_id)
-    trimestres = theme.trimestre_set.all()
-    return render(request, 'app/home/trimestres.html', { 'commune': commune, 'theme': theme, 'trimestres': trimestres})
+    indicateurs = theme.indicateur_set.all()
+    return render(request, 'app/home/indicateurs.html', {'theme': theme, 'indicateurs': indicateurs})
 
 @login_required
 @user_passes_test(lambda u: u.is_staff or u.is_superuser ,login_url="perm_is_employee")
-def centres(request,  commune_id, theme_id, trimestre_id):
-    commune = get_object_or_404(Commune, pk=commune_id)
+def region(request,theme_id, indicateur_id):
+    indicateur = get_object_or_404(Indicateur, pk=indicateur_id)
     theme = get_object_or_404(Theme, pk=theme_id)
-    trimestre = get_object_or_404(Trimestre, pk=trimestre_id)
-    centres = trimestre.centre_set.all()
-    return render(request, 'app/home/centres.html', {'commune': commune, 'theme': theme, 'trimestre': trimestre, 'centres': centres})
+    regions = indicateur.region_set.all()
+    return render(request, 'app/home/regions.html', { 'theme': theme, 'indicateur': indicateur,'regions':regions})
+
 
 @login_required
 @user_passes_test(lambda u: u.is_staff or u.is_superuser ,login_url="perm_is_employee")
-def fiche(request,commune_id, theme_id, trimestre_id, centre_id):
-    commune = get_object_or_404(Commune, pk=commune_id)
+def periode(request,theme_id, indicateur_id,region_id):
+    indicateur = get_object_or_404(Indicateur, pk=indicateur_id)
     theme = get_object_or_404(Theme, pk=theme_id)
-    trimestre = get_object_or_404(Trimestre, pk=trimestre_id)
-    centre = get_object_or_404(Centre, pk=centre_id)
-    fiches = Fiche.objects.filter(commune=commune, theme=theme, trimestre=trimestre, centre=centre)
+    region = get_object_or_404(Region, pk=region_id)
+    periodes = region.periode_set.all()
+    return render(request, 'app/home/periodes.html', {'theme': theme, 'indicateur': indicateur,'region':region,'periodes':periodes})
+
+@login_required
+@user_passes_test(lambda u: u.is_staff or u.is_superuser ,login_url="perm_is_employee")
+def fiche(request,theme_id, indicateur_id,region_id,periode_id):
+    indicateur = get_object_or_404(Indicateur, pk=indicateur_id)
+    theme = get_object_or_404(Theme, pk=theme_id)
+    region = get_object_or_404(Region, pk=region_id)
+    periode = get_object_or_404(Periode, pk=periode_id)
+    fiches = Fiche.objects.filter(periode=periode)
     total = fiches.aggregate(Sum('nombre'))
-    return render(request, 'app/home/fiche.html', {'commune': commune, 'theme': theme, 'trimestre': trimestre, 'centre': centre, 'fiches': fiches, 'total': total})
+    return render(request, 'app/home/fiches.html', {'theme': theme, 'indicateur': indicateur,'region':region,'periode':periode, 'total': total,'fiches': fiches})
 
 
 # Display a view for after redirecting the new employee without is_staff or is_superuser roles
@@ -70,32 +77,8 @@ def index(request):
     return render(request, 'app/home/index.html')
 
 
-@login_required
-@user_passes_test(lambda u: u.is_staff or u.is_superuser ,login_url="perm_is_employee")
-def provinces(request):
-    provinces = Province.objects.all()
-    return render(request, 'app/home/provinces.html', {'provinces': provinces})
-
-
-@login_required
-@user_passes_test(lambda u: u.is_staff or u.is_superuser ,login_url="perm_is_employee")
-def all_themes(request):
-    themes = Theme.objects.all()
-    return render(request, 'app/home/all_themes.html', {'themes': themes})
-
-
-@login_required
-@user_passes_test(lambda u: u.is_staff or u.is_superuser ,login_url="perm_is_employee")
-def communes(request, province_id):
-    province = get_object_or_404(Province, pk=province_id)
-    communes = province.commune_set.all()
-    return render(request, 'app/home/communes.html', {'province': province, 'communes': communes})
-
-
-
-
-def navbar(request):
-    provinces = Province.objects.all()
-    themes = Theme.objects.all()
-    return {'provinces': provinces,
-    'themes': themes}
+# @login_required
+# @user_passes_test(lambda u: u.is_staff or u.is_superuser ,login_url="perm_is_employee")
+# def all_themes(request):
+#     themes = Theme.objects.all()
+#     return render(request, 'app/home/all_themes.html', {'themes': themes})

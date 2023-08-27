@@ -12,7 +12,7 @@
             <div class="col-lg-12 col-md-12 col-12 ">
               <!-- Page header -->
               <div class="d-flex justify-content-between align-items-center mb-5">
-                <h3 class="mb-0"> {{ commune.name }}</h3>
+                <h3 class="mb-0">Notre excellent gammes de thèmes</h3>
 
               </div>
             </div>
@@ -32,7 +32,7 @@
                                     <div class="card-body btn btn-white">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <span class="fw-semi-bold "> 
-                    <a href="{% url 'trimestres'  commune.id theme.id %}">{{ theme.name }}</a></span>
+                    <a href="{% url 'indicateur'  theme.id  %}">{{ theme.name }}</a></span>
                                     
                                     </div>
                
@@ -44,7 +44,7 @@
 {% endfor %}
 
 {% else %}
-    <p>Aucune donnée disponible pour les themes.</p>
+    <p>Aucune donnée disponible pour les thèmes.</p>
 {% endif %}
                 
 

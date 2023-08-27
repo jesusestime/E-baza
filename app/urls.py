@@ -29,15 +29,12 @@ urlpatterns = [
    path('perm/employee/', home.perm_is_employee, name='perm_is_employee'),
    path('perm/admin/', home.perm_is_admin, name='perm_is_admin'),
 
-    
-    path('communes/<int:province_id>/', home.communes, name='communes'),
-    path('themes/<int:commune_id>/', home.themes, name='themes'),
-    path('trimestres/<int:commune_id>/<int:theme_id>/', home.trimestres, name='trimestres'),
-    path('centres/<int:commune_id>/<int:theme_id>/<int:trimestre_id>/', home.centres, name='centres'),
-    path('fiche/<int:commune_id>/<int:theme_id>/<int:trimestre_id>/<int:centre_id>/', home.fiche, name='fiche'),
- 
-    path('provinces', home.provinces, name='provinces'),
-    path('themes', home.all_themes, name='themes'),
+    path('theme/',home.theme, name='theme'),
+    path('indicateur/<int:theme_id>/',home.indicateur, name='indicateur'),
+    path('region/<int:theme_id>/<int:indicateur_id>/',home.region, name='region'),
+    path('periode/<int:theme_id>/<int:indicateur_id>/<int:region_id>/',home.periode, name='periode'),
+    path('fiche/<int:theme_id>/<int:indicateur_id>/<int:region_id>/<int:periode_id>/',home.fiche, name='fiche'),
+
     path('', home.index, name='index'),
 
 ]

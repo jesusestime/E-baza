@@ -22,11 +22,11 @@
 
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Provinces
+      Thèmes
     </a>
     <ul class="dropdown-menu">
-      {% for p in provinces %}
-      <li><a class="dropdown-item" href="{% url 'communes' province_id=p.id %}">{{p}}</a></li>
+      {% for p in themes %}
+      <li><a class="dropdown-item" href="{% url 'theme' %}">{{p}}</a></li>
       {% endfor %}
       
     </ul>
@@ -34,10 +34,10 @@
 
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Thèmes
+      Indicateurs
     </a>
     <ul class="dropdown-menu">
-      {% for t in themes %}
+      {% for t in indicateurs %}
       <li><a class="dropdown-item" href="#">{{t}}</a></li>
       {% endfor %}
     </ul>

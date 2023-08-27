@@ -1,0 +1,47 @@
+{% extends 'app/layouts/default.html' %} {% block content %}
+{% load static %}
+
+
+<!-- page content -->
+    <div id="capp-content">
+
+      <div class="app-content-area container">
+
+    
+      
+
+
+<h1 class="text-gray mb-4 fw-semi-bold my-5 py-3">Les régions mené par la sous-thème/indicateur {{ indicateur }} </h1>
+          <div class="row">
+            <div class="col-xl-12 col-md-12 col-12 mb-5">
+              <div class="row row-cols-lg-2 row-cols-1 g-5  ">
+              {% if regions %}
+              {% for regions in regions %}
+                <div class="col">
+                  <div class="card h-100 card-lift">
+                    <div class="card-body btn btn-white">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span class="fw-semi-bold "> <a href="{% url 'periode' regions.indicateur.theme.id regions.indicateur.id   regions.id %}">{{ regions.name }}</a></span>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+            {% endfor %}
+
+            {% else %}
+            <p>Aucune donnée communes disponible pour ses regions.</p>
+            {% endif %}
+              </div>
+            </div>
+          </div>
+           <div class="grid gap-6 mb-8 md:grid-cols-12 card h-100 card-lift  rounded-3">
+        
+        </div>
+        <div class="block">
+
+          <a class=" btn btn-primary" href="{% url 'indicateur' indicateur.id %}">Retour</a>
+      </div>
+      </div>
+    </div>
+{% endblock %}
