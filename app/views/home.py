@@ -1,8 +1,9 @@
 from django.db.models import Sum
 from django.http import HttpRequest
 from django.shortcuts import render, get_object_or_404
-from app.models import  Theme,Indicateur,Region,Periode,Fiche
+from app.models import  Theme,Indicateur,Region,Periode,Fiche,Employee
 from django.contrib.auth.decorators import login_required,user_passes_test
+
 
 @login_required
 @user_passes_test(lambda u: u.is_staff or u.is_superuser ,login_url="perm_is_employee")
@@ -74,7 +75,11 @@ def perm_is_admin(request):
 @login_required
 @user_passes_test(lambda u: u.is_staff or u.is_superuser ,login_url="perm_is_employee")
 def index(request):
-    return render(request, 'app/home/index.html')
+    indicateur = Indicateur.objects.count()
+    theme = Theme.objects.count()
+    region = Region.objects.count()
+    user =  Employee.objects.count()
+    return render(request, 'app/home/index.html', {'theme': theme, 'indicateur': indicateur,'region':region,'user':user})
 
 
 # @login_required

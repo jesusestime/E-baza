@@ -5,22 +5,22 @@
 <!-- page content -->
     <div id="capp-content">
 
-      <div class="app-content-area container">
+      <div class="capp-content-area container my-5">
 
         <div class="container-fluid">
           <div class="row">
             <div class="col-lg-12 col-md-12 col-12 ">
-              <!-- Page header -->
+              {% comment %} <!-- Page header -->
               <div class="d-flex justify-content-between align-items-center mb-5">
                 <h3 class="mb-0">Accueil</h3>
 
-              </div>
+              </div> {% endcomment %}
             </div>
           </div>
           <div class="card rounded-3">
             <div class="row mb-5 ">
               <div class="col-lg-12 col-md-12 col-12">
-                <div class="p-6 d-lg-flex justify-content-between align-items-center ">
+                <div class="p-4 d-lg-flex justify-content-between align-items-center ">
                   <div class="d-md-flex align-items-center">
                     <img src="{{request.user.avatar.url}}" alt="Image" class="rounded-circle avatar avatar-xl">
                     <div class="ms-md-4 mt-3 mt-md-0 lh-1">
@@ -34,12 +34,109 @@
             </div>
           </div>
           
+          <div class="row my-5 ">
+            <div class="col-xl-3 col-lg-6 col-md-12 col-12 mb-2 mb-2 ">
+                <!-- card -->
+                <div class="card h-100 card-lift">
+                    <!-- card body -->
+                    <div class="card-body">
+                        <!-- heading -->
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <h4 class="mb-0">Themes</h4>
+                            </div>
+                            <div class="icon-shape icon-md bg-primary-soft text-primary rounded-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-briefcase"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                            </div>
+                        </div>
+                        <!-- project number -->
+                        <div class="lh-1">
+                            <h1 class=" mb-1 fw-bold">{{theme}}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-md-12 col-12 mb-2 ">
+                <!-- card -->
+                <div class="card h-100 card-lift">
+                    <!-- card body -->
+                    <div class="card-body">
+                        <!-- heading -->
+                        <div class="d-flex justify-content-between align-items-center
+        mb-3">
+                            <div>
+                                <h4 class="mb-0">Indicateurs</h4>
+                            </div>
+                            <div class="icon-shape icon-md bg-primary-soft text-primary
+          rounded-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+                            </div>
+                        </div>
+                        <!-- project number -->
+                        <div class="lh-1">
+                            <h1 class="  mb-1 fw-bold">{{indicateur}}</h1>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-md-12 col-12 mb-2">
+                <!-- card -->
+                <div class="card h-100 card-lift">
+                    <!-- card body -->
+                    <div class="card-body">
+                        <!-- heading -->
+                        <div class="d-flex justify-content-between align-items-center
+        mb-3">
+        <div>
+          <h4 class="mb-0">Régions</h4>
+      </div>
+      <div class="icon-shape icon-md bg-primary-soft text-primary
+rounded-2">
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-target"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+      </div>
+                        </div>
+                        <!-- project number -->
+                        <div class="lh-1">
+                            <h1 class="  mb-1 fw-bold">{{region}}</h1>
+                            
+                        </div>
+                    </div>
+                </div>
 
-          <div class="row">
-            <div class="col-xl-12 col-md-12 col-12 mb-5">
-              <div class="row row-cols-lg-2 row-cols-1 g-5  my-3">
+            </div>
+            <div class="col-xl-3 col-lg-6 col-md-12 col-12 mb-2">
+                <!-- card -->
+                <div class="card h-100 card-lift">
+                    <!-- card body -->
+                    <div class="card-body">
+                        <!-- heading -->
+                        <div class="d-flex justify-content-between align-items-center
+        mb-3">
+        <div>
+          <h4 class="mb-0">Utilisateurs actifs</h4>
+      </div>
+      <div class="icon-shape icon-md bg-primary-soft text-primary
+rounded-2">
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+      </div>
+                           
+                        </div>
+                        <!-- project number -->
+                        <div class="lh-1">
+                            <h1 class="  mb-1 fw-bold">{{user}}</h1>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+          <div class="row my-5">
+            <div class="col-xl-12 col-md-12 col-12">
+              <div class="row row-cols-lg-2 row-cols-1">
               
-                <div class="col">
+                <div class="col mt-2">
                   <div class="card h-100  card-lift ">
                     <div class="card-body btn btn-white">
                       <div class="d-flex justify-content-between align-items-center">
@@ -52,7 +149,7 @@
                 </div>
                 
                   
-                  <div class="col">
+                  <div class="col mt-2">
                     <div class="card h-100  card-lift">
                       <div class="card-body btn btn-white">
                         <div class="d-flex justify-content-between align-items-center">
@@ -70,6 +167,12 @@
               </div>
             </div>
           </div>
+
+
+
+          
+
+
            <div class="grid gap-6 mb-8 md:grid-cols-12 card h-100 card-lift  rounded-3">
         <div
         class=" card-body"
@@ -81,6 +184,8 @@
             Cher {{request.user}},Merci d'avoir visité notre page de tableau de bord, Bienvenue à nouveau!
         </p>
     </div>
+
+    
         </div>
       </div>
     </div>
