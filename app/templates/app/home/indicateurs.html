@@ -11,24 +11,28 @@
       
 
 
-<h1 class="text-gray mb-4 fw-semi-bold my-5 py-3">Les sous-thèmes du thème {{ theme }} </h1>
+<h1 class="text-gray mb-4 fw-semi-bold my-5 py-3">Les sous-thèmes > {{ theme }} </h1>
           <div class="row">
             <div class="col-xl-12 col-md-12 col-12 mb-5">
               <div class="row row-cols-lg-2 row-cols-1 g-5  ">
-              {% if indicateurs %}
-              {% for indicateurs in indicateurs %}
-                <div class="col">
-                  <div class="card h-100 card-lift">
-                    <div class="card-body btn btn-white">
-                      <div class="d-flex justify-content-between align-items-center">
-                        <span class="fw-semi-bold "> <a href="{% url 'region' indicateurs.theme.id  indicateurs.id  %}">{{ indicateurs.name }}</a></span>
-                    
+                {% if indicateurs %}
+                <form>
+                  <div class="col">
+                    <div class="h-100 card-lift ">
+                      <div class="">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <select onchange="window.location.href=this.value" class="form-select">
+                            <option value="" disabled selected>Choisir un indicateur</option>
+                            {% for indicateur in indicateurs %}
+                              <option value="{% url 'region' indicateur.theme.id indicateur.id %}">{{ indicateur.name }}</option>
+                            {% endfor %}
+                          </select>
+                        </div>
                       </div>
-                      
                     </div>
                   </div>
-                </div>
-            {% endfor %}
+                </form>
+             
 
             {% else %}
             <p>Aucune donnée communes disponible pour ses indicateurs.</p>

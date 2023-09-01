@@ -8,4 +8,4 @@ class Region(models.Model):
     indicateur = models.ForeignKey(Indicateur,on_delete=models.CASCADE,verbose_name='Indicateur')
     
     def __str__(self):
-        return  self.name+'('+self.indicateur.name+'--'+self.indicateur.theme.name+'--)'  
+        return  self.name+'('+self.indicateur.name+'--'+self.indicateur.theme.name+')'  

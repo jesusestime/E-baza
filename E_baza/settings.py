@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'E_baza.wsgi.application'
 DATABASES = { 
     'default': { 
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'e_baza', 
+        'NAME': 'e_baza_dev', 
         'USER': 'root', 
         'PASSWORD': '', 
         'HOST': 'localhost', 
