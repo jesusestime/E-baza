@@ -151,3 +151,8 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 # Set the login perm url
 LOGIN_URL='employee_login'
+
+import os
+
+file_name = 'data.xlsx'  # Replace with the actual file name
+file_path = os.path.join(BASE_DIR, file_name)

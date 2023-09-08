@@ -30,11 +30,7 @@ urlpatterns = [
    path('perm/admin/', home.perm_is_admin, name='perm_is_admin'),
 
     path('theme/',home.theme, name='theme'),
-    path('indicateur/<int:theme_id>/',home.indicateur, name='indicateur'),
-    path('region/<int:theme_id>/<int:indicateur_id>/',home.region, name='region'),
-    path('periode/<int:theme_id>/<int:indicateur_id>/<int:region_id>/',home.periode, name='periode'),
-    path('fiche/<int:theme_id>/<int:indicateur_id>/<int:region_id>/<int:periode_id>/',home.fiche, name='fiche'),
-
+    path('data/',home.fiche, name='data'),
     path('', home.index, name='index'),
 
 ]

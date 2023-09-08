@@ -12,18 +12,44 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" defer></script>
     <script>
-         $(document).ready(function() {
-                $('#id_recipients').select2();
-
-                var upload=document.getElementById('id_files')
-                upload.onchange=function(){
-                    if(this.files[0].size > 5 * 1048579){
-                        alert("⚠️ Attention! la taille maximale du fichier dépasse 5MB")
-                        this.value="";}
-                };
-
-
+     
+            $(document).ready(function () {
+              var dataTable = $('#example4').DataTable();
+        
+              // Populate select options
+              function populateSelectOptions(columnIndex, selectId) {
+                var columnData = dataTable.column(columnIndex).data().unique().sort();
+                var select = $('#' + selectId);
+                select.empty();
+                select.append('<option value=""></option>');
+                columnData.each(function (data) {
+                  select.append('<option value="' + data + '">' + data + '</option>');
+                });
+              }
+        
+              // Initialize select2 for each select element
+              function initializeSelect2(selectId) {
+                $('#' + selectId).select2();
+              }
+        
+              // Handle select change event
+              function handleSelectChange(columnIndex, selectId) {
+                $('#' + selectId).on('change', function () {
+                  var selectedValues = $(this).val();
+                  dataTable.column(columnIndex).search(selectedValues.join('|'), true, false).draw();
+                });
+              }
+        
+              // Populate and initialize select elements for each column
+              dataTable.columns().every(function () {
+                var columnIndex = this.index();
+                var selectId = this.header().textContent.toLowerCase().replace(/ /g, '-') + '-select';
+                populateSelectOptions(columnIndex, selectId);
+                initializeSelect2(selectId);
+                handleSelectChange(columnIndex, selectId);
+              });
             });
+          </script>
 
     </script>
 
@@ -51,7 +77,7 @@
     <link href="{% static 'assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css' %}" rel="stylesheet">
     <title>E-baza App </title>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   
     <!-- JavaScript -->
 <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>

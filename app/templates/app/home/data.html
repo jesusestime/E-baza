@@ -1,0 +1,125 @@
+{% extends 'app/layouts/default.html' %}
+{% block content %}
+  {% load static %}
+
+  <!-- page content -->
+  <div id="capp-content">
+    <div class="app-content-area box container">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-12 ">
+            <!-- Page header -->
+            <div class="d-flex justify-content-between align-items-center mb-5">
+              <h3 class="mb-0">Nos données</h3>
+            </div>
+          </div>
+        </div>
+
+        {% if fiches %}
+          
+          <h2 class="my-5 mx-0">Tableau recapitulatif</h2>
+                    <!-- row -->
+                   
+                    <div class="row">
+                      
+                      <div class="col-12">
+                          <div class="card">
+                            <div class="card-body">
+                              <div id="search-form">
+                                <div class="row mb-3">
+                                  <div class="col-sm-4 mb-3 mb-lg-0">
+                                    <label class="col-form-label form-label" for="theme-select">Choisir votre theme:</label>
+                                    <select id="theme-select" class="form-select" multiple ></select>
+                                  </div>
+                                  <div class="col-sm-4 mb-3 mb-lg-0">
+                                    <label class="col-form-label form-label"   for="indicateur-select">Indicateur:</label>
+                                    <select id="indicateur-select" class="form-select"  multiple></select>
+                                  </div>
+                                  
+                                  <div class="col-sm-4 mb-3 mb-lg-0">
+                                    <label class="col-form-label form-label"  for="region-select">Region:</label>
+                                    <select id="region-select" class="form-select" multiple></select>
+                                  </div>
+                                <div>
+                                  <div class="row mb-3">
+                                    <div class="col-sm-4 mb-3 mb-lg-0">
+                                      <label class="col-form-label form-label" for="sous-region-select">Sous_region:</label>
+                                        <select class="form-select" id="sous-region-select" multiple></select>
+                                    </div>
+                                    <div class="col-sm-4 mb-3 mb-lg-0">
+                                      <label class="col-form-label form-label" for="periode-select">Période:</label>
+                                      <select class="form-select" id="periode-select" multiple></select>
+                                    </div>
+                                    <div class="col-sm-4 mb-3 mb-lg-0">
+                                      <label class="col-form-label form-label" for="age-select">Tranche d'âge:</label>
+                                <select class="form-select" id="age-select" multiple></select>
+                                    </div>
+                                  </div>
+                                
+                                  <div class="row mb-3">
+                                    <div class="col-sm-4 mb-3 mb-lg-0">
+                                      <label class="col-form-label form-label"  for="sexe-select">Sexe:</label>
+                                <select class="form-select" id="sexe-select" multiple></select>
+                                    </div>
+                                    <div class="col-sm-4 mb-3 mb-lg-0">
+                                      <label class="col-form-label form-label"  for="nombre-select">Nombre:</label>
+                                <select class="form-select form-control " id="nombre-select" multiple></select>
+                                    </div>
+                                    <div class="col-sm-4 mb-3 mb-lg-0">
+                                      <label class="col-form-label form-label"  for="source-select">Source:</label>
+                                <select class="form-select" id="source-select" multiple></select>
+                                    </div>
+                                  </div>
+
+                                
+                              </div>
+                          </div>
+                          <div class="card-body">
+                            <div class="table-responsive table-card">
+                              <table id="example4" class="table table-responsive table-centered text-nowrap mt-0" style="width: 100%">
+                                <thead class="table-light">
+                                  <tr>
+                                    <th>Theme</th>
+                                    <th>Indicateur</th>
+                                    <th>Region</th>
+                                    <th>Sous-region</th>
+                                    <th>Periode</th>
+                                    <th>Age</th>
+                                    <th>Sexe</th>
+                                    <th>Nombre</th>
+                                    <th>Source</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {% for fiche in fiches %}
+                                    <tr>
+                                      <td>{{ fiche.theme }}</td>
+                                      <td>{{ fiche.indicateur }}</td>
+                                      <td>{{ fiche.region }}</td>
+                                      <td>{{ fiche.sous_region }}</td>
+                                      <td>{{ fiche.periode }}</td>
+                                      <td>{{ fiche.age }}</td>
+                                      <td>{{ fiche.sexe }}</td>
+                                      <td>{{ fiche.nombre }}</td>
+                                      <td>{{ fiche.source }}</td>
+                                    </tr>
+                                  {% endfor %}
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+        {% else %}
+          <p>Aucune donnée disponible dans notre base de données.</p>
+        {% endif %}
+
+        <div class="mt-3">
+          <a class="mt-5 btn btn-primary" href="{% url 'index' %}">Retour au tableau de bord</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
