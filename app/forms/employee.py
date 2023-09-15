@@ -5,6 +5,11 @@ import datetime
 
 
 class EmployeeForm(UserCreationForm):
+    accept_terms = forms.BooleanField(
+        label='Accepter nos termes et conditions',
+        required=True,
+        widget=forms.CheckboxInput(attrs={'class': 'text-dark'})
+    )
 
     class Meta:
         model = Employee
@@ -17,8 +22,11 @@ class EmployeeForm(UserCreationForm):
             'password2',
             'birthday',
             'tel',
-            'province'
+            'province',
+            'service',
+            'sex',
+            'accept_terms',  # Add the 'accept_terms' field to the form
         ]
         widgets = {
-            'birthday': forms.DateInput( format=('%Y-%m-%d'),attrs={'type':'date','max':datetime.date.today}),
+            'birthday': forms.DateInput(format=('%Y-%m-%d'), attrs={'type': 'date', 'max': datetime.date.today}),
         }

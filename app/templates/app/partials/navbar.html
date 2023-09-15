@@ -52,7 +52,16 @@
     </a>
 </li>
 {% endif %}
-
+{% if request.user.is_authenticated and request.user.is_superuser %}
+<!-- Nav item -->
+<li class="nav-item">
+ <a class="nav-link has-arrow {% if url_name == 'employee_service_index' %} active {% endif %} "
+     href="{% url 'employee_service_index' %}">
+     <i data-feather="home" class="nav-icon me-2 icon-xxs" >
+     </i> Services
+ </a>
+</li>
+{% endif %}
     <li><div class="ms-2 mx-8" >
      <span class="fs-6" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock  text-muted icon-xxs me-1 align-text-bottom"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></span>
         Le {% now " l (d/m/Y)"%}&nbsp;

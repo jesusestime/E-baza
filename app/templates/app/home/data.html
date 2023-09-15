@@ -3,21 +3,21 @@
   {% load static %}
 
   <!-- page content -->
-  <div id="capp-content">
-    <div class="app-content-area box container">
+  <div id="capp-content ">
+    <div class="capp-content-area container my-5">
       <div class="container-fluid">
         <div class="row">
           <div class="col-lg-12 col-md-12 col-12 ">
             <!-- Page header -->
-            <div class="d-flex justify-content-between align-items-center mb-5">
-              <h3 class="mb-0">Nos données</h3>
+            <div class="d-flex justify-content-between align-items-center">
+              <h3 class="mb-2">Données</h3>
             </div>
           </div>
         </div>
 
         {% if fiches %}
           
-          <h2 class="my-5 mx-0">Tableau recapitulatif</h2>
+          <h2 class="my-2 mx-0">Tableau récapitulatif</h2>
                     <!-- row -->
                    
                     <div class="row">
@@ -28,7 +28,7 @@
                               <div id="search-form">
                                 <div class="row mb-3">
                                   <div class="col-sm-4 mb-3 mb-lg-0">
-                                    <label class="col-form-label form-label" for="theme-select">Choisir votre theme:</label>
+                                    <label class="col-form-label form-label" for="theme-select">Thème:</label>
                                     <select id="theme-select" class="form-select" multiple ></select>
                                   </div>
                                   <div class="col-sm-4 mb-3 mb-lg-0">
@@ -37,13 +37,13 @@
                                   </div>
                                   
                                   <div class="col-sm-4 mb-3 mb-lg-0">
-                                    <label class="col-form-label form-label"  for="region-select">Region:</label>
+                                    <label class="col-form-label form-label"  for="region-select">Région:</label>
                                     <select id="region-select" class="form-select" multiple></select>
                                   </div>
                                 <div>
                                   <div class="row mb-3">
                                     <div class="col-sm-4 mb-3 mb-lg-0">
-                                      <label class="col-form-label form-label" for="sous-region-select">Sous_region:</label>
+                                      <label class="col-form-label form-label" for="sous-region-select">Sous région(District Sanitaire):</label>
                                         <select class="form-select" id="sous-region-select" multiple></select>
                                     </div>
                                     <div class="col-sm-4 mb-3 mb-lg-0">
@@ -62,13 +62,14 @@
                                 <select class="form-select" id="sexe-select" multiple></select>
                                     </div>
                                     <div class="col-sm-4 mb-3 mb-lg-0">
-                                      <label class="col-form-label form-label"  for="nombre-select">Nombre:</label>
-                                <select class="form-select form-control " id="nombre-select" multiple></select>
-                                    </div>
-                                    <div class="col-sm-4 mb-3 mb-lg-0">
                                       <label class="col-form-label form-label"  for="source-select">Source:</label>
                                 <select class="form-select" id="source-select" multiple></select>
                                     </div>
+                                    <div class="col-sm-4 mb-3 mb-lg-0">
+                                      <label class="col-form-label form-label " for="general-search">Recherche:</label>
+                                      <input type="text" class="form-control select2-container--default  select2-selection--multiple " id="general-search">
+                                    </div>
+                                    
                                   </div>
 
                                 
@@ -82,7 +83,7 @@
                                     <th>Theme</th>
                                     <th>Indicateur</th>
                                     <th>Region</th>
-                                    <th>Sous-region</th>
+                                    <th>Sous region</th>
                                     <th>Periode</th>
                                     <th>Age</th>
                                     <th>Sexe</th>

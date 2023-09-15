@@ -12,7 +12,7 @@ class Fiche(models.Model):
     theme = models.ForeignKey(Theme,on_delete=models.CASCADE,verbose_name='Thème')
     indicateur = models.ForeignKey(Indicateur,on_delete=models.CASCADE,verbose_name='Indicateur')
     region=models.ForeignKey(Region,on_delete=models.CASCADE,verbose_name='Région')
-    sous_region=models.ForeignKey(Sous_Region,on_delete=models.CASCADE,verbose_name='Sous-région')
+    sous_region=models.ForeignKey(Sous_Region,on_delete=models.CASCADE,verbose_name='Sous région')
     periode = models.ForeignKey(Periode,on_delete=models.CASCADE,verbose_name='Période')
     age=models.CharField(max_length=45,verbose_name="Tranche d'age")
     sexe=models.CharField(max_length=45,choices=SEXE,verbose_name="Sexe",null=True)

@@ -18,7 +18,7 @@ def import_data_from_excel(file_path):
             sous_region=sous_region,
             periode=periode,
             age=row["TRANCHE DAGE :"],
-            sexe=row["Sexe"],
+            sexe=row["SEXE:"],
             nombre=row["DONNEES"],
             source=row["SOURCE :"]
         )
