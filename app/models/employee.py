@@ -41,7 +41,7 @@ class Employee(AbstractUser):
     tel = models.CharField(max_length=45, verbose_name='Téléphone')
     province = models.CharField(max_length=50, choices=PROVINCE_CHOICES)
     proffesion = models.CharField(max_length=100, choices=PROFFESION, verbose_name='Profession')
-    domaine = models.CharField(max_length=100, verbose_name='Domaine')
+    domaine = models.CharField(max_length=100, verbose_name='Institution/Etablissement')
 
     def __str__(self):
         return self.username + "(" + self.first_name + " " + self.last_name + ")"
