@@ -13,10 +13,10 @@
           <div class="text-center">
             <!-- text -->
             <img class="w-40 h-40" src="{% static 'assets/images/error/virtual-assistant.svg' %}" alt="Image" class="img-fluid">
-            <h1 class=" display-4 ">
+            <h1 class=" display-4 text-dark">
               Information d'assistance
             </h1>
-            <p class="my-8">Félicitations pour votre inscription cher le nouvel utilisateur {{ request.user.username }} ! Veuillez contacter l'administrateur (même si vous n'y travaillez plus) pour vous permettre l'accès.<br>
+            <p class="my-8 text-dark">Félicitations pour votre inscription cher le nouvel utilisateur {{ request.user.username }} ! Veuillez contacter l'administrateur (même si vous n'y travaillez plus) pour vous permettre l'accès.<br>
             ⚠️Vous devez avoir des privilèges de admin ou de utilisateur validé pour y accéder.</p>
             <!-- button -->
             <a href="{% url "employee_logout" %}" class="btn btn-primary">Se déconnecter</a>

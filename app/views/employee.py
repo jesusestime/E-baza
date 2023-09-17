@@ -4,13 +4,13 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 import os
 
+
 from django.contrib.auth.decorators import login_required,user_passes_test
 
 from app.models import Employee
 
 from django.contrib.auth import update_session_auth_hash
 
-from app.forms import EmployeeForm,EmployeeUpdateForm,EmployeeActivateForm,EmployeePasswordForm
 
 @login_required
 @user_passes_test(lambda u: u.is_superuser ,login_url="perm_is_admin")
@@ -27,6 +27,7 @@ def index(request):
 
 # Show employee register form
 def register(request):
+    from app.forms import EmployeeForm
     form =EmployeeForm()
     return render(
         request, 
@@ -57,6 +58,7 @@ def user_login(request):
 
 # Register a new employee    
 def store(request):
+    from app.forms import EmployeeForm
     if request.method == 'POST':
         form = EmployeeForm(request.POST)
         if form.is_valid():
@@ -94,6 +96,7 @@ def user_view(request, id):
 @login_required
 # Edit existing employee
 def user_edit(request,id):
+    from app.forms import EmployeeUpdateForm
     assert isinstance(request, HttpRequest)
     if request.method == "GET":
         if id == 0:
@@ -145,6 +148,7 @@ def user_delete(request,id):
 @user_passes_test(lambda u: u.is_superuser ,login_url="perm_is_admin")
 # Activate an existing employee
 def user_activation(request,id):
+    from app.forms import EmployeeActivateForm
     assert isinstance(request, HttpRequest)
     if request.method == "GET":
         if id == 0:
@@ -174,6 +178,8 @@ def user_activation(request,id):
 @login_required
 # Change password for existing employee
 def user_password(request,id):
+    
+    from app.forms import EmployeePasswordForm
     assert isinstance(request, HttpRequest)
     if request.method == 'POST':
         form = EmployeePasswordForm(request.user, request.POST)
@@ -190,3 +196,9 @@ def user_password(request,id):
     return render(request, 'app/employees/password_change.html', {
         'form': form
     })
+
+@login_required
+# terms  and conditions
+def terms(request):
+    assert isinstance(request, HttpRequest)
+    return render(request, 'app/employees/termes.html')

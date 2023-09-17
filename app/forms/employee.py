@@ -2,14 +2,16 @@ from django.contrib.auth.forms import UserCreationForm
 from app.models import Employee
 from django import forms
 import datetime
+from django.utils.safestring import mark_safe
+from django.urls import reverse_lazy
 
 
 class EmployeeForm(UserCreationForm):
-    accept_terms = forms.BooleanField(
-        label='Accepter nos termes et conditions',
-        required=True,
-        widget=forms.CheckboxInput(attrs={'class': 'text-dark'})
-    )
+    accept_terms = forms.BooleanField(required=True, widget=forms.CheckboxInput(attrs={'class': 'text-dark'}))
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['accept_terms'].label = mark_safe('Accepter <a href="{}">nos termes et conditions</a>'.format(reverse_lazy('terms')))
 
     class Meta:
         model = Employee
@@ -23,7 +25,8 @@ class EmployeeForm(UserCreationForm):
             'birthday',
             'tel',
             'province',
-            'service',
+            'proffesion',
+            'domaine',
             'sex',
             'accept_terms',  # Add the 'accept_terms' field to the form
         ]

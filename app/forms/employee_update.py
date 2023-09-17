@@ -13,11 +13,12 @@ class EmployeeUpdateForm(UserChangeForm):
             'email',
             'username',
             'avatar',
-            'registration_number',
             'birthday',
             'sex',
             'tel',
-            'service',
+            'province',
+            'proffesion',
+            'domaine',
             'province'
         ]
 

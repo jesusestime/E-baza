@@ -76,14 +76,7 @@
                                {{ form.tel|as_crispy_field }}
                             </div>
                           </div>
-                          <div class="mb-3 row">
-                            <label for="fullName" class="col-sm-4 col-form-label
-                                form-label"> Informations sur le numéro de matricule et l'adresse   </label>
-                            <div class="col-sm-4">
-                               {{ form.registration_number|as_crispy_field }}
-                            </div>
-                            
-                          </div>
+
 
                           <div class="mb-3 row">
                             <label for="fullName" class="col-sm-4 col-form-label
@@ -97,9 +90,14 @@
 
                         <div class="mb-3 row">
                             <label for="fullName" class="col-sm-4 col-form-label
-                                form-label"> Services  </label>
+                                form-label"> Domaine  </label>
                             <div class="col-sm-8">
-                               {{ form.service|as_crispy_field }}
+                               {{ form.domaine|as_crispy_field }}
+                            </div>
+                            <label for="fullName" class="col-sm-4 col-form-label
+                                form-label"> Profession  </label>
+                            <div class="col-sm-8">
+                               {{ form.proffesion|as_crispy_field }}
                             </div>
                            
                         </div>

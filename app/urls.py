@@ -23,7 +23,7 @@ urlpatterns = [
    path('employees/delete/<int:id>', employee.user_delete, name='employee_delete'),
    path('employees/activate/<int:id>', employee.user_activation, name='employee_activate'),
    path('employees/password/<int:id>', employee.user_password, name='employee_password'),
-        
+   path('termes et conditions/', employee.terms, name='terms'),    
 
 
    path('perm/employee/', home.perm_is_employee, name='perm_is_employee'),
